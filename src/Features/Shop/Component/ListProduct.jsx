@@ -5,6 +5,7 @@ import { updateCart } from '../../Cart/action';
 import Cart from '../../Handle/AddToCart';
 import Check from '../../Handle/Check';
 import Format from '../../Handle/Format';
+import {Button} from 'reactstrap';
 const URL_IMAGE = "https://localhost:5001/image/";
 const ListProduct = (props) => {
     const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const ListProduct = (props) => {
         }
         
     }
+
     const renderProduct = productList.map((item,index)=>{
         return (
             <div key={index} className="col-lg-3 col-md-4 col-sm-6 mt-10">
@@ -48,7 +50,7 @@ const ListProduct = (props) => {
                     <div className="add-actions">
                     <ul className="add-actions-link">
                         <li className="add-cart active">
-                            <a href={true} onClick={() => addToCart(item.id)}>Thêm giỏ hàng</a>
+                            <span onClick={() => addToCart(item.id)}>Thêm giỏ hàng</span>
                         </li>
                     </ul>
                     </div>
@@ -58,11 +60,20 @@ const ListProduct = (props) => {
             </div>
         );
     })
-
     const totalPage = props.totalPage;
+
     const changePage = (page)=>{
         props.handlePage(page);
     }
+    var indents = [];
+    for (var i = 1; i <= totalPage; i++) {
+        indents.push(i);
+    }
+    const demo = indents.map((item,i)=>{
+        return (
+            <li className="active" key={i}><Button onClick={()=>changePage(i+1)} >{i+1}</Button></li>
+        )
+    })
     return (
         <div className="content-wraper pt-60 pb-60">
             <div className="container">
@@ -88,12 +99,9 @@ const ListProduct = (props) => {
                                                 <li>
                                                     <a href="/" className="Previous"><i className="fa fa-chevron-left" /> Previous</a>
                                                 </li>
-                                                
-                                                <li className="active">
-                                                    <a onClick={()=>changePage(2)} href>1</a>
-                                                </li>
+                                                {demo}
                                                 <li>
-                                                    <a href={true} className="Next"> Next <i className="fa fa-chevron-right" /></a>
+                                                    <a href="/" className="Next"> Next <i className="fa fa-chevron-right" /></a>
                                                 </li>
                                             </ul>
                                         </div>
