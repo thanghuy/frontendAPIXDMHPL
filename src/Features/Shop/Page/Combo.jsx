@@ -4,7 +4,11 @@ import ProductAPI from '../../../API/ProductApi';
 import Breadcrumb from '../../../Component/Breadcrumd';
 const Accessories = () => {
     const [listProduct,setListProduct] = useState([]);
-
+    const [total,setTotal] = useState(0);
+    const [fillter,setFillter] = useState({
+        combo : true,
+        page : 1
+    })
     useEffect(()=>{
         const fetchProudct = async () =>{
             try {
@@ -13,16 +17,24 @@ const Accessories = () => {
                 }
                 const resp = await ProductAPI.getProduct(params);
                 setListProduct(resp.data);
+                setTotal(resp.totalPage);
+                window.scrollTo(0, 0);
             } catch (error) {
                 
             }
         }
         fetchProudct();
     },[])
+    const handlePage = (page)=>{
+        setFillter({
+            ...fillter,
+            page : page
+        })
+    }
     return (
         <Fragment>
             <Breadcrumb name="Combo" />
-            <ListProduct productList={listProduct}/>
+            <ListProduct productList={listProduct} handlePage={handlePage} totalPage={total}/>
         </Fragment>
     );
 };

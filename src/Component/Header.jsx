@@ -8,11 +8,11 @@ import Check from '../Features/Handle/Check';
 import CartAPI from '../API/CartApi';
 import { updateCart } from '../Features/Cart/action';
 import Format from '../Features/Handle/Format';
-import { Button } from 'reactstrap';
 import { saveUser } from '../Features/User/Action';
 const Header = (props) => {
     const history = useHistory();
     const [catalogList, setCatalogList] = useState([]);
+    const [key,setKey] = useState("");
     const isLogin = useSelector(state => state.User.isLogin);
     const Cart  = useSelector(state => state.Cart);
     const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const Header = (props) => {
         if(Check.CheckLogin()){
             fetchCart();
         }
-    },[])
+    },[dispatch])
     const listCatalog = catalogList.map((item,index)=>{
         return (
                 <li key={index}><Link to={`/${item.catalog1}.${item.id}`}>{item.catalog1}</Link></li>
@@ -63,7 +63,14 @@ const Header = (props) => {
             <li><span style={{fontSize : "14px",cursor : 'pointer'}} onClick={Logout}>Đăng xuất</span></li>
         </Fragment> :
         <li><Link to="/user/login-register">Đăng nhập</Link></li>;
-    
+    const handleSearch =(e)=>{
+        e.preventDefault();
+        history.push("/search?key="+key);
+    }
+    const onChangeKey = e =>{
+        var key = e.target.value;
+        setKey(key);
+    }
     return (
         <header className="li-header-4">
             {/* Begin Header Top Area */}
@@ -105,20 +112,18 @@ const Header = (props) => {
                         </Link>
                     </div>
                     </div>
-                    {/* Header Logo Area End Here */}
-                    {/* Begin Header Middle Right Area */}
                     <div className="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
-                    {/* Begin Header Middle Searchbox Area */}
-                    <form action="#" className="hm-searchbox">
-                        <input type="text" placeholder="Enter your search key ..." />
-                        <button className="li-btn" type="submit"><i className="fa fa-search" /></button>
-                    </form>
-                    {/* Header Middle Searchbox Area End Here */}
-                    {/* Begin Header Middle Right Area */}
+                        <form onSubmit={handleSearch} className="hm-searchbox">
+                            <input 
+                                name="key" 
+                                type="text" 
+                                placeholder="Nhập tên sản phẩm ..."
+                                onChange={onChangeKey}
+                            />
+                            <button className="li-btn" type="submit"><i className="fa fa-search" /></button>
+                        </form>
                     <div className="header-middle-right">
                         <ul className="hm-menu">
-                        {/* Header Middle Wishlist Area End Here */}
-                        {/* Begin Header Mini Cart Area */}
                         <li className="hm-minicart">
                             <Link to="/cart">
                                 <div className="hm-minicart-trigger">
