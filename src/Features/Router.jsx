@@ -4,6 +4,7 @@ import {BrowserRouter as Router ,Route, Switch } from 'react-router-dom';
 import Notfound from '../Component/Notfound';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
+import Sroll from '../Component/Sroll';
 
 // const AppRouter = ({component : Component,layout : Layout,...rest}) =>{
 //     return(
@@ -13,6 +14,7 @@ import Footer from '../Component/Footer';
 //         </Route>
 //     );
 // }
+
 const Home      = lazy(()=> import('./Home/index'));
 const Shop      = lazy(()=> import('./Shop/index'));
 const Detail    = lazy(()=> import('./Products/index'));
@@ -21,19 +23,22 @@ const User      = lazy(()=> import('./User/index'));
 const Checkout  = lazy(()=> import('./Checkout'));
 
 const Routers = () => {
+    
     return (
         <Suspense fallback={<div >Loading...</div>}>
             <Router > 
                 <Header />
-                    <Switch>
-                        <Route exact path="/" component={Home}/>
-                        <Route path="/:name.:id" component={Shop}/>
-                        <Route path="/products/:nameProduct/:id" component={Detail} />
-                        <Route path="/cart" component={Cart} />
-                        <Route path="/user" component={User} />
-                        <Route path="/checkout" component={Checkout} />
-                        <Route component={Notfound} />
-                    </Switch> 
+                    <Sroll>
+                        <Switch>
+                            <Route exact path="/" component={Home}/>
+                            <Route path="/:name.:id" component={Shop}/>
+                            <Route path="/products/:nameProduct/:id" component={Detail} />
+                            <Route path="/cart" component={Cart} />
+                            <Route path="/user" component={User} />
+                            <Route path="/checkout" component={Checkout} />
+                            <Route component={Notfound} />
+                        </Switch> 
+                    </Sroll>
                 <Footer />
             </Router>
         </Suspense>

@@ -15,6 +15,7 @@ const Main = (props) => {
             idCatalog : props.id,
             page : page
         })
+        
     }
     useEffect(()=>{
         const fetchProduct = async () =>{
@@ -22,6 +23,8 @@ const Main = (props) => {
                 const response = await ProductAPI.getProduct(fillter);
                 setProductList(response.data);   
                 settotalPage(response.totalPage);
+                window.scrollTo(0, 0);
+                
             } catch (error) {
                 
             }
