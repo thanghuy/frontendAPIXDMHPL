@@ -27,7 +27,7 @@ const Detail = () => {
         }
         fetchDetail();
         fetchOneOrder();
-    },[])
+    },[idOrder])
     return (
         <Fragment>
             <Breadcrumd name="Chi tiết hóa đơn"/>
