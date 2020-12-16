@@ -162,6 +162,7 @@ const Header = (props) => {
                             <ul>
                                 <li><Link to="/">Home</Link></li>
                                 {listCatalog}
+                                <li><Link to="/khuyen-mai/combo">Combo</Link></li>
                             </ul>
                         </nav>
                     </div>

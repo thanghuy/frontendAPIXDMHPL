@@ -21,6 +21,7 @@ const Detail    = lazy(()=> import('./Products/index'));
 const Cart      = lazy(()=> import('./Cart/index'));
 const User      = lazy(()=> import('./User/index'));
 const Checkout  = lazy(()=> import('./Checkout'));
+const Combo     = lazy(()=> import("./Shop/Page/Combo"));
 
 const Routers = () => {
     
@@ -32,6 +33,7 @@ const Routers = () => {
                         <Switch>
                             <Route exact path="/" component={Home}/>
                             <Route path="/:name.:id" component={Shop}/>
+                            <Route path="/khuyen-mai/combo" component={Combo}/>
                             <Route path="/products/:nameProduct/:id" component={Detail} />
                             <Route path="/cart" component={Cart} />
                             <Route path="/user" component={User} />

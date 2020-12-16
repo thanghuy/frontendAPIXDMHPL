@@ -9,7 +9,7 @@ const Index = () => {
     return (
         <Switch>
             <Route path={`${match.url}`} component={()=> <Main url={match.url} name={params.name} id={params.id}/>}/>
-            <Route path="/search" component={Search}/>
+            <Route path={`${match.url}/search`} component={Search}/>
         </Switch>
     );
 };
