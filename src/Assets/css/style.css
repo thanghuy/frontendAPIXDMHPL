@@ -1,0 +1,12 @@
+.slider-with-banner{
+    margin-top: 15px;
+}
+button.li-btn{
+    line-height: 40px !important;
+}
+.invalid-feedback{
+    font-size: 15px;
+}
+.form-control:focus {
+    box-shadow:none !important;
+ }
