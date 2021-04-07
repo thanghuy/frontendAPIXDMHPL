@@ -7,7 +7,7 @@ import Format from '../../Handle/Format';
 import Check from '../../Handle/Check';
 import CartAPI from '../../../API/CartApi';
 import { Button } from 'reactstrap';
-
+import QrCode from 'qrcode.react';
 const IMAGE_URL = "https://localhost:5001/image/";
 const Cart = (props) => {
     const cartList = props.cartList;
@@ -114,7 +114,8 @@ const Cart = (props) => {
                     </div>
                     </div>
                 </div>
-                </div>
+            </div>
+            <QrCode value="http://facebook.github.io/react/" />
         </Fragment>
     );
 };

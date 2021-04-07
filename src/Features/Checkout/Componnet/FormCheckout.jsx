@@ -114,7 +114,7 @@ const FormCheckout = (props) => {
       )
     })
     return (
-        <Fragment>
+      <Fragment>
         <Breadcrumd name="Thanh toán"/>
         <form onSubmit={formik.handleSubmit}>
         <div className="checkout-area pt-60 pb-30">

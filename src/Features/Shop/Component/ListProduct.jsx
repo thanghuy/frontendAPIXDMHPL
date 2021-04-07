@@ -35,22 +35,22 @@ const ListProduct = (props) => {
                 {/* single-product-wrap start */}
                 <div className="single-product-wrap">
                 <div className="product-image" style={{padding : "20px"}}>
-                    <Link to={`/products/${item.name}/${item.id}`}>
-                        <img src={URL_IMAGE+item.image} alt="Li" />
+                    <Link to={`/products/${item.Name}/${item.Id}`}>
+                        <img src={URL_IMAGE+item.Image} alt="Li" />
                     </Link>
                     <span className="sticker">New</span>
                 </div>
                 <div className="product_desc">
                     <div className="product_desc_info">
-                     <h4><Link className="product_name" to={`/products/${item.name}/${item.id}`}>{item.name}</Link></h4>
+                     <h4><Link className="product_name" to={`/products/${item.Name}/${item.Id}`}>{item.Name}</Link></h4>
                     <div className="price-box">
-                        <span className="new-price new-price-2">{Format.FormatPrice(item.price)}</span>
+                        <span className="new-price new-price-2">{Format.FormatPrice(item.Price)}</span>
                     </div>
                     </div>
                     <div className="add-actions">
                     <ul className="add-actions-link">
                         <li className="add-cart active">
-                            <span onClick={() => addToCart(item.id)}>Thêm giỏ hàng</span>
+                            <span onClick={() => addToCart(item.Id)}>Thêm giỏ hàng</span>
                         </li>
                     </ul>
                     </div>
