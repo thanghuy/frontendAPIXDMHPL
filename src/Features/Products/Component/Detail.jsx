@@ -50,7 +50,7 @@ const Detail = (props) => {
                                 <div className="product-details-images slider-navigation-1">
                                     <div className="lg-image">
                                     <a className="popup-img venobox vbox-item" href="images/product/large-size/1.jpg" data-gall="myGallery">
-                                        <img src={URL_IMAGE + product.Image} alt="product imagea" />
+                                        <img src={URL_IMAGE + product.image} alt="product imagea" />
                                     </a>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@ const Detail = (props) => {
                         <div className="col-lg-7 col-md-6">
                             <div className="product-details-view-content pt-60">
                                 <div className="product-info">
-                                    <h2>{product.Name}</h2>
+                                    <h2>{product.name}</h2>
                                     <span className="product-details-ref">Reference: demo_15</span>
                                     <div className="rating-box pt-20">
                                         <ul className="rating rating-with-review-item">
@@ -72,7 +72,7 @@ const Detail = (props) => {
                                         </ul>
                                     </div>
                                     <div className="price-box pt-20">
-                                        <span className="new-price new-price-2">{Format.FormatPrice(product.Price)}</span>
+                                        <span className="new-price new-price-2">{Format.FormatPrice(product.price)}</span>
                                     </div>
                                     <div className="product-desc">
                                         <p>

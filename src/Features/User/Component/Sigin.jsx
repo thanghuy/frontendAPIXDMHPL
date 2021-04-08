@@ -23,10 +23,10 @@ const Sigin = () => {
     
     const fetchCreateUser = async (data) =>{
         var datas = {
-            firstName : data.firstName,
-            lastName : data.lastName,
             username : data.username_s,
-            password : data.password_s
+            password : data.password_s,
+            fullname : data.firstName,
+            email : data.lastName
         }
         console.log(datas);
         try {

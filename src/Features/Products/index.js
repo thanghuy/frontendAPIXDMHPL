@@ -11,7 +11,7 @@ const Index = () => {
         const fetchProduct = async () =>{
             try {
                 const response = await ProductAPI.getDetail(params.id);
-                setProduct(response);   
+                setProduct(response.data);   
             } catch (error) {
                 console.log("connect faild");
             }

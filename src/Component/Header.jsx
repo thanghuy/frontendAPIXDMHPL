@@ -41,7 +41,7 @@ const Header = (props) => {
     },[dispatch])
     const listCatalog = catalogList.map((item,index)=>{
         return (
-                <li key={index}><Link to={`/${item.NameCatalog}.${item.Id}`}>{item.NameCatalog}</Link></li>
+                <li key={index}><Link to={`/${item.nameCatalog}.${item.id}`}>{item.nameCatalog}</Link></li>
         );
     })
     const Logout = () =>{
@@ -167,7 +167,6 @@ const Header = (props) => {
                             <ul>
                                 <li><Link to="/">Home</Link></li>
                                 {listCatalog}
-                                <li><Link to="/khuyen-mai/combo">Combo</Link></li>
                             </ul>
                         </nav>
                     </div>
