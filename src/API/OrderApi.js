@@ -2,11 +2,11 @@ import axiosClient from './axiosClient';
 
 const OrderAPI = {
     getAllOrder : (id) =>{
-        const url = "/invoices/all/"+id;
+        const url = "/invoices/"+id;
         return axiosClient.get(url);
     },
     getOneOrder : (id) =>{
-        const url = "/invoices/"+id;
+        const url = "/invoicesOne/"+id;
         return axiosClient.get(url);
     },
     getDetailOrder : (id) =>{

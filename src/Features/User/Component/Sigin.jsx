@@ -3,9 +3,15 @@ import { useFormik } from 'formik';
 import {Alert, FormFeedback,Input} from 'reactstrap';
 import * as Yup from "yup";
 import UserAPI from '../../../API/UserApi';
+import Check from '../../Handle/Check';
+import { useDispatch } from 'react-redux';
+import  { withRouter, useHistory} from 'react-router-dom';
+import { saveUser } from '../Action';
 const Sigin = () => {
     const [alert , setAlert] = useState(false);
     const [isSign,setIsSign] = useState(false);
+    const history = useHistory()
+    const dispatch = useDispatch();
     const formiks = useFormik({
         initialValues: {
             firstName: '',
@@ -33,6 +39,10 @@ const Sigin = () => {
             const resp = await UserAPI.CreateUser(datas);
             setAlert(true);
             if(resp.status){
+                const action = saveUser(resp);
+                Check.isLogin(resp.data.id,resp.data.username);
+                dispatch(action);
+                history.push('/');
                 setIsSign(true)
             }
             else{
@@ -141,4 +151,4 @@ const Sigin = () => {
     );
 };
 
-export default Sigin;
+export default withRouter(Sigin);

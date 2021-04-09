@@ -5,11 +5,16 @@ import Breadcrumb from '../../../Component/Breadcrumd';
 import { updateCart } from '../../Cart/action';
 import Check from '../../Handle/Check';
 import Format from '../../Handle/Format';
+import DialogIsLogin from '../../../Component/Dialog';
+import Snackbar from '../../../Component/Snackbar';
+
 const URL_IMAGE = "https://localhost:5001/image/";
 
 const Detail = (props) => {
     const product = props.product;
     const [amount,setAmount] = useState(1);
+    const [isLogin,setIsLogin] = useState(false);
+    const [isAlert,setIsAlert] = useState(false);
     const dispatch = useDispatch();
     const userId = Check.getIdUser();
     const handelSL = event => {
@@ -23,23 +28,39 @@ const Detail = (props) => {
     }
     const addCart = async ()=>{
         if(!Check.CheckLogin()){
-            alert("Bạn cần đăng nhập để thêm giỏ hàng")
+            setIsLogin(true);
         }
         else{
             var data =  {
-                "IdCustomer" : parseInt(userId),
-                "IdProduct" : parseInt(product.id),
+                "CustomerId" : parseInt(userId),
+                "ProductId" : parseInt(product.id),
                 "Amount" : parseInt(amount)
             }
             await CartAPI.addCart(data);
             const resp = await CartAPI.getCart(userId);
             const action = updateCart(resp.data);
             dispatch(action);
-            alert("Thêm giỏ hàng thành công");
+            setIsAlert(true);
         }
+    }
+    const CallBack = () => {
+        setIsLogin(false);
+        setIsAlert(false);
     }
     return (
         <Fragment>
+            {isLogin ? 
+                <DialogIsLogin
+                    Content="Bạn cần đăng nhập trước khi thêm sản phẩm vào giỏ hàng"
+                    TitleButton="Đi đến đăng nhập" 
+                    CallBack={CallBack}
+                />
+            : <Fragment />}
+            {isAlert ? 
+                <Snackbar
+                    CallBack={CallBack}
+                />
+            : <Fragment />}
             <Breadcrumb url={props.url} name={props.name} />
             <div className="content-wraper">
                 <div className="container">
@@ -76,7 +97,8 @@ const Detail = (props) => {
                                     </div>
                                     <div className="product-desc">
                                         <p>
-                                            <span>100% cotton double printed dress. Black and white striped top and orange high waisted skater skirt bottom. Lorem ipsum dolor sit amet, consectetur adipisicing elit. quibusdam corporis, earum facilis et nostrum dolorum accusamus similique eveniet quia pariatur.
+                                            <span>
+                                                Được chế tác bằng chất liệu chủ đạo là nhôm phay xước, MSI GF63 Thin 10SCXR 1218VN là chiếc laptop gaming hiện đại được thiết kế theo xu hướng mới hiện nay: mỏng nhẹ và tinh tế. Với các chỉ số ấn tượng như trọng lượng 1.86kg và kích thước 21.7mm, bạn có thể mang theo và chơi game ở bất kỳ đâu cùng bạn bè.
                                             </span>
                                         </p>
                                     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { updateCart } from '../../Cart/action';
@@ -6,32 +6,51 @@ import Cart from '../../Handle/AddToCart';
 import Check from '../../Handle/Check';
 import Format from '../../Handle/Format';
 import {Button} from 'reactstrap';
+import DialogIsLogin from '../../../Component/Dialog';
+import Snackbar from '../../../Component/Snackbar';
 const URL_IMAGE = "https://localhost:5001/image/";
 const ListProduct = (props) => {
     const dispatch = useDispatch();
     const productList = props.productList;
+    const [isLogin,setIsLogin] = useState(false);
+    const [isAlert,setIsAlert] = useState(false);
     const addToCart = async (IdProduct) =>{
         if(!Check.CheckLogin()){
-            alert("Bạn cần đăng nhập để thêm giỏ hàng")
+            setIsLogin(true);
         }
         else{
             var data = {
-                "IdCustomer" : parseInt(Check.getIdUser()),
-                "IdProduct" : IdProduct,
+                "CustomerId" : parseInt(Check.getIdUser()),
+                "ProductId" : IdProduct,
                 "Amount" : 1
             }
             await Cart.addCart(data);
             const response = await Cart.getCart(parseInt(Check.getIdUser()));
             const action = updateCart(response.data);
             dispatch(action);
-            alert("Thêm giỏ hàng thành công");
+            setIsAlert(true);
         }
         
     }
-
+    const CallBack = () => {
+        setIsLogin(false);
+        setIsAlert(false);
+    }
     const renderProduct = productList.map((item,index)=>{
         return (
             <div key={index} className="col-lg-3 col-md-4 col-sm-6 mt-10">
+                {isLogin ? 
+                    <DialogIsLogin
+                        Content="Bạn cần đăng nhập trước khi thêm sản phẩm vào giỏ hàng"
+                        TitleButton="Đi đến đăng nhập" 
+                        CallBack={CallBack}
+                    />
+                : null}
+                {isAlert ? 
+                    <Snackbar
+                        CallBack={CallBack}
+                    />
+                : null}
                 {/* single-product-wrap start */}
                 <div className="single-product-wrap">
                 <div className="product-image" style={{padding : "20px"}}>

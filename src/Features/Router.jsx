@@ -1,6 +1,5 @@
 import React, { Suspense,lazy} from 'react';
 import {BrowserRouter as Router ,Route, Switch } from 'react-router-dom';
-// import WebLayout from './Layout/Web';
 import Notfound from '../Component/Notfound';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
@@ -12,7 +11,7 @@ const Detail    = lazy(()=> import('./Products/index'));
 const Cart      = lazy(()=> import('./Cart/index'));
 const User      = lazy(()=> import('./User/index'));
 const Checkout  = lazy(()=> import('./Checkout'));
-const Search     = lazy(()=> import("./Shop/Page/Search"));
+const Search    = lazy(()=> import("./Shop/Page/Search"));
 
 const Routers = () => {
     

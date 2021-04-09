@@ -37,22 +37,23 @@ const FormCheckout = (props) => {
       var dd = String(today.getDate()).padStart(2, '0');
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
-
-      today = dd + '/' + mm + '/' + yyyy;
+      var n = today.getTime();
+      today = dd + '/' + mm + '/' + yyyy+ '-'+ n;
       var result = cartList.map((item,index)=>{
           return {
-            "idProduct": item.id,
+            "productId": item.id,
             "amount": item.amount,
             "price": item.price
           }
       })
       var datas = {
-        name: data.lastname +" "+ data.fisrtname,
-        idCustomer: parseInt(idC),
+        name: data.fisrtname,
+        customerId: parseInt(idC),
         idShipper: 1,
         totalMoney: parseFloat(Total),
         createAt: today,
         customerAddress: data.address,
+        status: false,
         shipDate: today,
         phone: data.phone,
         email: data.email,
@@ -73,7 +74,6 @@ const FormCheckout = (props) => {
     const formik = useFormik({
       initialValues: {
         fisrtname : '',
-        lastname : '',
         email : '',
         phone : '',
         address : '',
@@ -92,7 +92,6 @@ const FormCheckout = (props) => {
     const regexPhone = /((09|03|07|08|05)+([0-9]{8})\b)/g;
     const CheckoutSchema = Yup.object().shape({
       fisrtname : Yup.string().required("Tên không được để trống"),
-      lastname : Yup.string().required("Họ không được để trống"),
       email : Yup.string().required("Email không được để trống")
               .matches(regexEmail,"Email không hợp lệ"),
       phone : Yup.string().required("Phone không được để trống")
@@ -101,7 +100,6 @@ const FormCheckout = (props) => {
     })
     const {errors, touched} = formik;
     const showError1 = errors.fisrtname && touched.fisrtname;
-    const showError2 = errors.lastname && touched.lastname;
     const showError3 = errors.email && touched.email;
     const showError4 = errors.phone && touched.phone;
     const showError5 = errors.address && touched.address;
@@ -139,23 +137,6 @@ const FormCheckout = (props) => {
                             invalid={showError1}
                           />
                           <FormFeedback>{errors.fisrtname}</FormFeedback>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="checkout-form-list">
-                          <label>Họ<span className="required">*</span></label>
-                          <Input 
-                            className="mb-0" 
-                            placeholder="Nhập họ"
-                            type="text" 
-                            id="lastname"
-                            name="lastname"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.lastname}
-                            invalid={showError2}
-                          />
-                          <FormFeedback>{errors.lastname}</FormFeedback>
                         </div>
                       </div>
                       <div className="col-md-12">

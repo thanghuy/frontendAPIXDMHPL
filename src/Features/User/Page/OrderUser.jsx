@@ -8,7 +8,7 @@ const OrderUser = () => {
     useEffect(()=>{
         const fetchListOrder = async () =>{
             const resp = await OrderAPI.getAllOrder(Check.getIdUser());
-            setListOrder(resp);
+            setListOrder(resp.data);
         }
         fetchListOrder();
     },[]);

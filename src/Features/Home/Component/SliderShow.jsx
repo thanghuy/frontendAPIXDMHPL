@@ -8,23 +8,23 @@ import PropTypes from 'prop-types';
 const items = [
   {
     src: Image1,
-    altText: 'Slide 1',
-    caption: 'Slide 1',
-    header: 'Slide 1 Header',
+    altText: '',
+    caption: '',
+    header: 'Khuyến mãi 1',
     key: '1'
   },
   {
     src: Image2,
-    altText: 'Slide 2',
-    caption: 'Slide 2',
-    header: 'Slide 2 Header',
+    altText: '',
+    caption: '',
+    header: 'Khuyến mãi 2',
     key: '2'
   },
   {
     src: Image3,
-    altText: 'Slide 3',
-    caption: 'Slide 3',
-    header: 'Slide 3 Header',
+    altText: '',
+    caption: '',
+    header: 'Khuyến mãi 3',
     key: '3'
   }
 ];

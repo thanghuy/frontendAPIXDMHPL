@@ -12,7 +12,7 @@ const Detail = () => {
         const fetchDetail = async () =>{
             try {
                 const resp = await OrderAPI.getDetailOrder(idOrder);
-                setListDOrder(resp.data);
+                setListDOrder(resp.data.result);
             } catch (error) {
                 console.log(error)
             }
