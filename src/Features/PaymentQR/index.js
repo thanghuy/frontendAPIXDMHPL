@@ -1,15 +1,13 @@
 import React from 'react';
-import { Route,Redirect, Switch, useRouteMatch } from 'react-router-dom';
-import FormCheckout from './Componnet/FormCheckout';
+import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Check from '../Handle/Check';
+import PaymentQr from './Component/ChoiceQr';
 const Index = () => {
     const match = useRouteMatch();
-    //const params = match.params;
-    if(Check.CheckLogin())
-    {
+    if(Check.CheckLogin()){
         return (
             <Switch>
-                <Route path={match.url} component={FormCheckout}/>
+                <Route path={`${match.url}/qr/:idInvoice`} component={PaymentQr}/>
             </Switch>
         );
     }

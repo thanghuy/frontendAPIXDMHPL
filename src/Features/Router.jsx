@@ -12,6 +12,7 @@ const Cart      = lazy(()=> import('./Cart/index'));
 const User      = lazy(()=> import('./User/index'));
 const Checkout  = lazy(()=> import('./Checkout'));
 const Search    = lazy(()=> import("./Shop/Page/Search"));
+const PaymentQR    = lazy(()=> import("./PaymentQR/index"));
 
 const Routers = () => {
     
@@ -28,6 +29,7 @@ const Routers = () => {
                             <Route path="/cart" component={Cart} />
                             <Route path="/user" component={User} />
                             <Route path="/checkout" component={Checkout} />
+                            <Route path="/payment" component={PaymentQR} />
                             <Route component={Notfound} />
                         </Switch> 
                     </Sroll>

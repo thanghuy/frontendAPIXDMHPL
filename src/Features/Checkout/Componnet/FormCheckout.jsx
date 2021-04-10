@@ -31,13 +31,22 @@ const FormCheckout = (props) => {
         }
         fetchCart();
     },[uesrID])
+    function addZero(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
     const fetchOrder = async (data) =>{
       var idC = Check.CheckLogin() ? uesrID : null; 
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
-      var n = today.getTime();
+      var h = addZero(today.getHours());
+      var m = addZero(today.getMinutes());
+      var s = addZero(today.getSeconds());
+      var n = h + ":" + m + ":" + s;
       today = dd + '/' + mm + '/' + yyyy+ '-'+ n;
       var result = cartList.map((item,index)=>{
           return {
@@ -66,7 +75,7 @@ const FormCheckout = (props) => {
         }
         const action = updateCart([]);
         dispatch(action);
-        history.push("user/order/"+resp.data.id);
+        history.push("/payment/qr/"+resp.invoiceId);
       } catch (error) {
         console.log("Error")
       }
@@ -94,7 +103,7 @@ const FormCheckout = (props) => {
       fisrtname : Yup.string().required("Tên không được để trống"),
       email : Yup.string().required("Email không được để trống")
               .matches(regexEmail,"Email không hợp lệ"),
-      phone : Yup.string().required("Phone không được để trống")
+      phone : Yup.string().required("Số điện thoại không được để trống")
               .matches(regexPhone,"Số điện thoại không hợp lệ"),
       address : Yup.string().required("Địa chỉ không được để trống")
     })
@@ -113,7 +122,7 @@ const FormCheckout = (props) => {
     })
     return (
       <Fragment>
-        <Breadcrumd name="Thanh toán"/>
+        <Breadcrumd name="Thông tin giao hàng"/>
         <form onSubmit={formik.handleSubmit}>
         <div className="checkout-area pt-60 pb-30">
           <div className="container">
@@ -122,7 +131,7 @@ const FormCheckout = (props) => {
                   <div className="checkbox-form">
                     <h3>Thông tin </h3>
                     <div className="row">
-                      <div className="col-md-6">
+                      <div className="col-md-12">
                         <div className="checkout-form-list">
                           <label>Tên<span className="required">*</span></label>
                           <Input 
@@ -222,7 +231,7 @@ const FormCheckout = (props) => {
                   <div className="payment-method">
                     <div className="payment-accordion">
                       <div className="order-button-payment">
-                        <input defaultValue="Thanh toán" type="submit" />
+                        <input value="Xác nhận" type="submit" />
                       </div>
                     </div>
                   </div>
