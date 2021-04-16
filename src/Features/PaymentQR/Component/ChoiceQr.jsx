@@ -1,14 +1,15 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import Breadcrumd from '../../../Component/Breadcrumd';
 import { useRouteMatch } from 'react-router-dom';
 import QRCode from 'qrcode.react';
+
 const style = {
     textAlign : "center"
 }
 const ChoiceQr = () => {
     const match = useRouteMatch();
-    // const [contentQrAPI, setContentQrAPI] = useState("");
     const idOrder = match.params.idInvoice;
+    
     const contentQrAPI = "https://localhost:5001/api/invoicesOne/"+idOrder;
     return (
         <Fragment>
