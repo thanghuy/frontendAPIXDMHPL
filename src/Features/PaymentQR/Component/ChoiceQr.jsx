@@ -46,7 +46,7 @@ const ChoiceQr = () => {
         +'6014'
         +'Tp.Ho Chi Minh'
         +'6204'
-        +'03'+id;
+        +'03'+id
         +'6304A13A'
         setEmvoQR(emvoStrs);
     }
