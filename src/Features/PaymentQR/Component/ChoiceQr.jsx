@@ -35,22 +35,19 @@ const ChoiceQr = () => {
         +'010212'
         +'0216'
         +'4242424242424242'
-        +'6304A13A'
         +'2930'
         +'0012D15600000000'
         +'0510A93FO3230Q'
-        +'3128'
-        +'0012D15600000001'
-        +'0312D15600000001'
+        +'5303704'
+        +'54'+lengthMoney+totalMoney
         +'5802VN'
         +'5916'
         +'Nguyen Huy Thang'
         +'6014'
         +'Tp.Ho Chi Minh'
-        +'54'+lengthMoney+totalMoney
-        +'5303704'
         +'6204'
         +'03'+id;
+        +'6304A13A'
         setEmvoQR(emvoStrs);
     }
     return (
